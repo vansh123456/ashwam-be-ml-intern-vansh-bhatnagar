@@ -85,7 +85,7 @@ const App: React.FC = () => {
             Ashwam PII Scrubber
           </h1>
           <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300 border border-emerald-500/40">
-            Frontend UI Prototype
+            v1.0
           </span>
         </div>
       </header>

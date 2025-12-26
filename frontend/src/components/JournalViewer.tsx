@@ -79,27 +79,30 @@ export const JournalViewer: React.FC<Props> = ({
                 <div className="grid gap-3 border-t border-slate-800 pt-3 text-sm md:grid-cols-2">
                   <div>
                     <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
-                      Original
-                    </p>
-                    <div className="rounded-md border border-slate-800 bg-slate-950/60 p-2 text-xs leading-relaxed text-slate-100">
-                      {entry.text}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
-                      Scrubbed &amp; Highlighted
+                      Original (with PII highlights)
                     </p>
                     <div className="rounded-md border border-slate-800 bg-slate-950/60 p-2 text-xs leading-relaxed text-slate-100">
                       {result ? (
                         <HighlightText
-                          text={result.scrubbed_text}
+                          text={entry.text}
                           spans={result.detected_spans}
                         />
                       ) : (
+                        <span>{entry.text}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                      Scrubbed (PII replaced)
+                    </p>
+                    <div className="rounded-md border border-slate-800 bg-slate-950/60 p-2 text-xs leading-relaxed text-slate-100">
+                      {result ? (
+                        <span>{result.scrubbed_text}</span>
+                      ) : (
                         <span className="text-slate-500">
                           Run <span className="font-semibold">Scrub Data</span>{' '}
-                          once the backend is connected to see scrubbed output
-                          here.
+                          to see scrubbed output here.
                         </span>
                       )}
                     </div>
