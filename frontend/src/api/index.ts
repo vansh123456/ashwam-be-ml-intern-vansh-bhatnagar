@@ -15,20 +15,52 @@ export type ScrubbedEntry = {
   scrubber_version: string;
 };
 
-// Backend URL is provided via Vite env; fallback uses the existing backend port 3000.
+// Backend URL - defaults to port 3000 where backend runs
+// Can be overridden with VITE_API_URL environment variable
 export const API_BASE_URL =
   import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 /**
- * Placeholder for future backend integration.
- * In the next step, this will POST the journals.jsonl file to `${API_BASE_URL}/scrub`.
+ * Send journals.jsonl file to backend for PII scrubbing
+ * @param file - The JSONL file to scrub
+ * @returns Promise resolving to array of scrubbed entries
  */
-export async function scrubFileWithBackend(_file: File): Promise<ScrubbedEntry[]> {
-  // This function is intentionally left as a stub for now to respect the
-  // step-by-step integration flow.
-  // eslint-disable-next-line no-console
-  console.info('scrubFileWithBackend called - backend wiring will be added next.');
-  return [];
+export async function scrubFileWithBackend(file: File): Promise<ScrubbedEntry[]> {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await axios.post<ScrubbedEntry[]>(
+      `${API_BASE_URL}/scrub`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        timeout: 60000, // 60 second timeout for large files
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // Server responded with error status
+        throw new Error(
+          `Backend error: ${error.response.status} - ${
+            error.response.data?.error || error.response.data?.message || 'Unknown error'
+          }`
+        );
+      } else if (error.request) {
+        // Request made but no response
+        throw new Error(
+          'Unable to connect to backend. Please ensure the server is running on ' +
+          API_BASE_URL
+        );
+      }
+    }
+    throw error;
+  }
 }
 
 

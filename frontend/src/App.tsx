@@ -46,15 +46,15 @@ const App: React.FC = () => {
     setLoading(true);
 
     try {
-      // NOTE: The actual backend call will be wired in the next step.
-      // For now we only keep the UI flow and state shape.
-      // eslint-disable-next-line no-console
-      console.info('Scrub button clicked - backend integration to be added.');
-      // Placeholder: no-op, results remain empty.
-      setResults([]);
+      const { scrubFileWithBackend } = await import('./api');
+      const scrubbedResults = await scrubFileWithBackend(file);
+      setResults(scrubbedResults);
     } catch (e) {
       console.error(e);
-      setError('Failed to scrub data. Backend integration is not yet configured.');
+      const errorMessage =
+        e instanceof Error ? e.message : 'Failed to scrub data. Please try again.';
+      setError(errorMessage);
+      setResults([]);
     } finally {
       setLoading(false);
     }

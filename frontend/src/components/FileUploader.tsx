@@ -93,7 +93,7 @@ export const FileUploader: React.FC<Props> = ({
 
       <p className="text-[11px] text-slate-500">
         The left panel shows original journal text, the right panel shows
-        scrubbed output with PII highlights once connected to the backend.
+        scrubbed output with PII highlights.
       </p>
     </div>
   );
