@@ -1,0 +1,41 @@
+.pii-email {
+  @apply rounded-sm bg-piiEmail/20 px-0.5 text-piiEmail underline decoration-piiEmail/60 decoration-dotted;
+}
+
+.pii-phone {
+  @apply rounded-sm bg-piiPhone/20 px-0.5 text-piiPhone underline decoration-piiPhone/60 decoration-dotted;
+}
+
+.pii-name {
+  @apply rounded-sm bg-piiName/20 px-0.5 text-piiName underline decoration-piiName/60 decoration-dotted;
+}
+
+.pii-address {
+  @apply rounded-sm bg-piiAddress/20 px-0.5 text-piiAddress underline decoration-piiAddress/60 decoration-dotted;
+}
+
+.pii-dob {
+  @apply rounded-sm bg-piiDob/20 px-0.5 text-piiDob underline decoration-piiDob/60 decoration-dotted;
+}
+
+.pii-provider {
+  @apply rounded-sm bg-piiProvider/20 px-0.5 text-piiProvider underline decoration-piiProvider/60 decoration-dotted;
+}
+
+.pii-appt {
+  @apply rounded-sm bg-piiAppt/20 px-0.5 text-piiAppt underline decoration-piiAppt/60 decoration-dotted;
+}
+
+.pii-insurance {
+  @apply rounded-sm bg-piiInsurance/20 px-0.5 text-piiInsurance underline decoration-piiInsurance/60 decoration-dotted;
+}
+
+.pii-gov {
+  @apply rounded-sm bg-piiGov/20 px-0.5 text-piiGov underline decoration-piiGov/60 decoration-dotted;
+}
+
+.pii-generic {
+  @apply rounded-sm bg-slate-600/30 px-0.5 text-slate-100 underline decoration-slate-400/60 decoration-dotted;
+}
+
+
